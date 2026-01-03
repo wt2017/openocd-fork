@@ -295,6 +295,9 @@ static int cmsis_dap_open(void)
 				continue;
 
 			retval = backend->open(dap, cmsis_dap_vid, cmsis_dap_pid, adapter_get_required_serial());
+			LOG_INFO("Trying CMSIS-DAP backend: %s -> %s, ",
+					backend->name,
+					(retval == ERROR_OK) ? "success" : "failed");
 			if (retval == ERROR_OK)
 				break;
 		}
